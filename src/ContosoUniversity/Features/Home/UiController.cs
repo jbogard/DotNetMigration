@@ -18,6 +18,11 @@
             return View();
         }
 
+        public ActionResult Chat()
+        {
+            return View();
+        }
+
         public async Task<ActionResult> About()
         {
             var data = await _mediator.SendAsync(new About.Query());
