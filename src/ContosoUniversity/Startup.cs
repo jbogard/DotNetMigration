@@ -1,5 +1,7 @@
 ﻿using ContosoUniversity;
+using ContosoUniversity.DependencyResolution;
 using Hangfire;
+using Hangfire.StructureMap;
 using Microsoft.Owin;
 using Owin;
 
@@ -13,7 +15,11 @@ namespace ContosoUniversity
             app.MapSignalR();
 
             GlobalConfiguration.Configuration
-                .UseSqlServerStorage("SchoolContext");
+                .UseSqlServerStorage("SchoolContext")
+                .UseStructureMapActivator(IoC.Container)
+                //.UseIgnoredAssemblyVersionTypeResolver()
+                ;
+
 
             app.UseHangfireDashboard();
             app.UseHangfireServer();

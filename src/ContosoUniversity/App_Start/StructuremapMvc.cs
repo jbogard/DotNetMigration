@@ -44,7 +44,7 @@ namespace ContosoUniversity.App_Start {
 
         public static void Start()
         {
-            IContainer container = IoC.Initialize();
+            IContainer container = IoC.Container;
             ParentScope = new StructureMapDependencyScope(container, new HttpContextNestedContainerScope());
             DependencyResolver.SetResolver(ParentScope);
             DynamicModuleUtility.RegisterModule(typeof(StructureMapScopeModule));

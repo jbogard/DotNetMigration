@@ -20,7 +20,11 @@ namespace ContosoUniversity.DependencyResolution {
     using StructureMap;
 	
     public static class IoC {
-        public static IContainer Initialize() {
+        private static IContainer _container;
+        public static IContainer Container => _container ?? (_container = Initialize());
+
+        private static IContainer Initialize()
+        {
             return new Container(c => c.AddRegistry<DefaultRegistry>());
         }
     }
