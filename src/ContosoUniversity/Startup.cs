@@ -1,4 +1,5 @@
 ﻿using ContosoUniversity;
+using Hangfire;
 using Microsoft.Owin;
 using Owin;
 
@@ -10,6 +11,12 @@ namespace ContosoUniversity
         public void Configuration(IAppBuilder app)
         {
             app.MapSignalR();
+
+            GlobalConfiguration.Configuration
+                .UseSqlServerStorage("SchoolContext");
+
+            app.UseHangfireDashboard();
+            app.UseHangfireServer();
 
             ConfigureAuth(app);
         }
