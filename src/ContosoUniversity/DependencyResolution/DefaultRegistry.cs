@@ -22,6 +22,7 @@ namespace ContosoUniversity.DependencyResolution {
     using DAL;
     using FluentValidation;
     using FluentValidation.Mvc;
+    using Hangfire;
     using Infrastructure;
     using Infrastructure.Validation;
     using StructureMap.Configuration.DSL;
@@ -46,6 +47,7 @@ namespace ContosoUniversity.DependencyResolution {
             For<IControllerFactory>().Use<ControllerFactory>();
             For<ModelValidatorProvider>().Use<FluentValidationModelValidatorProvider>();
             For<IValidatorFactory>().Use<StructureMapValidatorFactory>();
+            For<IBackgroundJobClient>().Use<BackgroundJobClient>();
         }
 
         #endregion

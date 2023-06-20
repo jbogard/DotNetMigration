@@ -57,6 +57,8 @@
         {
             await _mediator.SendAsync(command);
 
+            Session["FavoriteInstructor"] = $"{command.FirstMidName} {command.LastName}";
+
             return this.RedirectToActionJson("Index");
         }
 
